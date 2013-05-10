@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>zDP (zDebugger and zProfiler)</title>
+    
+    <link href="css/chrome-bootstrap.css" rel="stylesheet">
+</head>
+<body class="frame">
+
+    <div class="navigation">
+        <h1><a href="#">zDP</a></h1>
+        <ul class="menu">
+            <li class="selected">
+                <a href="#forms">Toolbar</a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="mainview view">
+        <div id="forms" class="selected">
+            <header>
+                <h1>Settings <span class="sub_title">connection information for Zend Debugger</span></h1>
+            </header>
+            <div class="content">
+                <form id="settings">
+                    <div class="checkbox" style="margin: 10px 0;">
+                        <label>
+                            <div style="line-height:20px;">Zend Debug Client Detection Type</div>
+                            <select name="studio[enabled]">
+                                <option value="auto_detect">Auto Detect</option>
+                                <option value="manual">Manual</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div style="margin: 20px 0 10px 0;">
+                        <label>
+                            <div style="line-height:20px;">Auto Detect Debug Client Port</div>
+                            <input type="text" name="studio[auto_detect][port]" placeholder="Debug Client Port">
+                            <span class="sub_title" style="line-height:20px; font-size:11px;">The Zend Debugger auto discovery port specified in your local IDE.  Default is 20080.</span>
+                        </label>
+                    </div>
+                    <div style="margin: 20px 0 10px 0;">
+                        <label>
+                            <div style="line-height:20px;">Manual Debug Host</div>
+                            <input type="text" name="studio[manual][debug_host]" placeholder="Debug Host">
+                            <span class="sub_title" style="line-height:20px; font-size:11px;">Comma separated values e.g. localhost,127.0.0.1,192.168.0.12</span>
+                        </label>
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <label>
+                            <div style="line-height:20px;">Manual Debug Port</div>
+                            <input type="text" name="studio[manual][debug_port]" placeholder="Debug Port">
+                            <span class="sub_title" style="line-height:20px; font-size:11px;">Integer value specifying a port e.g. 10137</span>
+                        </label>
+                    </div>
+                    <div class="checkbox" style="margin: 10px 0;">
+                        <label>
+                            <div style="line-height:20px;">Use Fast File</div>
+                            <select name="session[use_fast_files]">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                            <span class="sub_title" style="line-height:20px; font-size:11px;">Used by newer versions of Zend Debuger. Default to "Yes"</span>
+                        </label>
+                    </div>
+                    <div class="checkbox" style="margin: 10px 0;">
+                        <label>
+                            <div style="line-height:20px;">Debug Local Copy</div>
+                            <select name="session[debug_local_copy]">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                            <span class="sub_title" style="line-height:20px; font-size:11px;">If set to "Yes" the Zend Debug client will use your local source code for debugging. If set to "No" the Zend Debug client will have the server push the file(s) to your machine. Default to "Yes"</span>
+                        </label>
+                    </div>
+                    <div class="checkbox" style="margin: 10px 0;">
+                        <label>
+                            <div style="line-height:20px;">Break On First Line</div>
+                            <select name="session[break_on_first_line]">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                            <span class="sub_title" style="line-height:20px; font-size:11px;">Determines if the debug session will automatically pause execution on the first line. Default to "Yes"</span>
+                        </label>
+                    </div>
+                    
+                    <div style="margin: 20px 0 10px 0;">
+                        <button type="submit">Save Settings</button> <span id="savemessage" style="display:none;">Saved!</span>
+                    </div>
+                </form>
+            </div>
+    
+        </div>
+    </div>
+    
+    <script src="js/jquery.js"></script>
+    <script src="js/uri.js"></script>
+    <script src="js/appSettings.js"></script>
+    <script src="js/appCookie.js"></script>
+    <script src="js/zendCookie.js"></script>
+    <script src="js/options.js"></script>
+</body>
+</html>

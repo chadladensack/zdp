@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <title>zDP - Zend Debuger and Profiler</title>
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <section class="profile">
+        <h1>Profile</h1>
+        <div class="control" data-action="profileCurrent">
+            <div class="inner">
+                <span class="title">Current Page</span>
+                <div class="checkbox neutral"></div>
+            </div>
+        </div>
+        <div class="control" data-action="profileNext">
+            <div class="inner">
+                <span class="title">Next Page</span>
+                <div id="profileNext" class="checkbox off"></div>
+            </div>
+        </div>
+    </section>
+    <section class="debug">
+        <h1><a id="settings" href="#">Options</a>Debug</h1>
+        <div class="control" data-action="debugCurrent">
+            <div class="inner">
+                <span class="title">Current Page</span>
+                <div class="checkbox neutral"></div>
+            </div>
+        </div>
+        <div class="control" data-action="debugNext">
+            <div class="inner">
+                <span class="title">Next Page</span>
+                <div id="debugNext" class="checkbox off"></div>
+            </div>
+        </div>
+        <div class="control" data-action="debugPost">
+            <div class="inner">
+                <span class="title">All POST</span>
+                <div id="debugPost" class="checkbox off"></div>
+            </div>
+        </div>
+        <div class="control" data-action="debugStart">
+            <div class="inner">
+                <span class="title">All GET/POST</span>
+                <div id="debugStart" class="checkbox off"></div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="js/jquery.js"></script>
+    <script src="js/uri.js"></script>
+    <script src="js/appSettings.js"></script>
+    <script src="js/appCookie.js"></script>
+    <script src="js/zendCookie.js"></script>
+    <script src="js/zendDebug.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+    "name": "zDP (zDebugger and zProfiler)",
+    "version": "1.0",
+    "manifest_version": 2,
+    
+    "description": "Debug and Profiler extension for Zend Debugger",
+    
+    "background": {
+        "scripts": [
+            "js/jquery.js",
+            "js/uri.js",
+            "js/appSettings.js",
+            "js/appCookie.js",
+            "js/zendCookie.js",
+            "js/zendBackground.js"
+        ],
+        "persistent": false
+    },
+  
+    "browser_action": {
+        "default_icon": "/img/ico-off.png",
+        "default_popup": "popup.html"
+    },
+    
+    "options_page": "options.html",
+    
+    "permissions": [
+        "cookies",
+        "tabs",
+        "http://*/"
+    ]
+}
