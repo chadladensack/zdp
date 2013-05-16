@@ -1,5 +1,5 @@
 {
-    "name": "zDP (zDebugger and zProfiler)",
+    "name": "zDP (Zend Debugger and Profiler)",
     "version": "1.0",
     "manifest_version": 2,
     
@@ -7,8 +7,8 @@
     
     "background": {
         "scripts": [
-            "js/jquery.js",
-            "js/uri.js",
+            "js/vendor/jquery.js",
+            "js/vendor/uri.js",
             "js/appSettings.js",
             "js/appCookie.js",
             "js/zendCookie.js",

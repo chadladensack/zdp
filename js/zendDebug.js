@@ -15,6 +15,7 @@ var ZendDebug = {
             chrome.tabs.getSelected(w.id, function(tab) {
                 ZendDebug.tabUri = new URI(tab.url);
                 ZendDebug.tabId = tab.id;
+                
                 ZendDebug.updateRadios();
             });
         });
@@ -32,7 +33,7 @@ var ZendDebug = {
             }
         });
         
-        // setting client event
+        // "setting" icon client event
         $('#settings').on('click', function(){
             chrome.tabs.create({url: 'options.html'});
             return false;
@@ -83,7 +84,7 @@ var ZendDebug = {
         this.reload = reload;
         
         if (typeof cookieData == 'object') {
-            this.cookie = $.extend({}, ZendDebugCookie, cookieData);
+            this.cookie = $.extend({}, ZendCookie.getValues(), cookieData);
             
             if (AppSettings.studio.enabled == 'auto_detect') {
                 this.getClient();
@@ -156,7 +157,7 @@ var ZendDebug = {
 
     getClient : function() {
         var req = new XMLHttpRequest();
-        req.open('GET', 'http://localhost:' + AppSettings.studio.auto_detect.port, true);
+        req.open('get', 'http://localhost:' + AppSettings.studio.auto_detect.port, true);
         req.addEventListener('load', function (e) {
             var uri = new URI('?' + e.target.responseText.trim());
             var data = uri.search(true);
@@ -169,7 +170,7 @@ var ZendDebug = {
     }
 };
 
-// initalize the application
+// initalize the application. Executed every time the "toolbar" window is opened.
 $(function() {
     ZendDebug.init();
 });

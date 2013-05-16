@@ -5,6 +5,7 @@
  */
 var AppSettings = $.extend({
     general : {
+        // @todo maybe add a search toolbar to the popup window?
         enable_search_toolbar : true
     },
     session : {

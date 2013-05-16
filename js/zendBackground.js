@@ -1,4 +1,4 @@
-var checkZendDebugger = function(tabId) {
+var zendBackground = function(tabId) {
     chrome.tabs.get(tabId, function(tab) {
         if (typeof tab == 'object' && tab['url']) {
             
@@ -24,5 +24,5 @@ var checkZendDebugger = function(tabId) {
     });
 };
 
-chrome.tabs.onUpdated.addListener(checkZendDebugger);
-chrome.tabs.onActiveChanged.addListener(checkZendDebugger);
+chrome.tabs.onUpdated.addListener(zendBackground);
+chrome.tabs.onActiveChanged.addListener(zendBackground);
