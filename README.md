@@ -5,10 +5,10 @@ Zend Debug and Profiler toolbar for Google Chrome.  Allows Debugging and Profili
 > This is a fork of the [zDebug Google Chrome extension](https://chrome.google.com/webstore/detail/zdebug/gknbnafalimbhgkmichoadhmkaoingil?hl=en "zDebug Google Chrome extension") created by Dylan Holmes.  Dylan, thank you for your hard work in putting the base together.  Dylan, please contact me so we can collaborate on knocking this thing out of the park for future use!
 
 ## How To Use
-* Get the source from GitHub
-* Load the extension in Chrome following the commands at http://developer.chrome.com/extensions/getstarted.html#unpacked
-* Start (if not already running) Zend Studio or IDE using Zend Debugger.
-* Start using the debugger/profiler.  Zend Debug client auto detection is enabled by default.
+1. Get the source from GitHub
+2. Load the extension in Chrome following the commands at http://developer.chrome.com/extensions/getstarted.html#unpacked
+3. Start (if not already running) Zend Studio or IDE using Zend Debugger.
+4. Start using the debugger/profiler.  Zend Debug client auto detection is enabled by default.
 
 ## Todo
 * Fix issue with values not persisting correctly between options and cookie set.  It's due to the way the default cookie values and settings are loaded - on initial load.  It should be a quick fix.
