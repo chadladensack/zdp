@@ -3,7 +3,7 @@ zDP (Zend Debug and Profiler)
 
 Zend Debug and Profiler toolbar for Google Chrome.  Allows Debugging and Profiling capabilities with auto detection for the Zend Debug client.
 
-This is a fork of the zDebug Google Chrome extension created by Dylan Holmes.  Dylan, thank you for your hard work in putting the base together.  Dylan, please contact me so we can collaborate on knocking this thing out of the park for future use!
+This is a fork of the [zDebug Google Chrome extension](https://chrome.google.com/webstore/detail/zdebug/gknbnafalimbhgkmichoadhmkaoingil?hl=en "zDebug Google Chrome extension") created by Dylan Holmes.  Dylan, thank you for your hard work in putting the base together.  Dylan, please contact me so we can collaborate on knocking this thing out of the park for future use!
 
 How To Use
 ==
