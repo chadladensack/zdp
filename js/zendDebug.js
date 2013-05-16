@@ -115,10 +115,10 @@ var ZendDebug = {
     },
     
     executeEnd : function(cookies, reload) {
-        AppCookie.update(cookies, this.tabUri);
+        AppCookie.update(cookies, ZendDebug.tabUri);
         
         if (reload === true) {
-            chrome.tabs.reload(this.tabId);
+            chrome.tabs.reload(ZendDebug.tabId);
             window.close();
         }
         
