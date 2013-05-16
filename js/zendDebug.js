@@ -43,7 +43,7 @@ var ZendDebug = {
         var cookie = ZendCookie.getValues();
         var appSettings = AppSettings.getValues();
         
-        if (appSettings.studio.enabled == 'auto_detect') {
+        if (appSettings.studio.enabled == AppSettings.types.callClient) {
             this.getClient(cookie, false, ZendDebug.updateInfoEnd);
         } else {
             ZendDebug.updateInfoEnd(cookie, false);
@@ -56,7 +56,7 @@ var ZendDebug = {
         var port = cookie.debug_port;
         var host = cookie.debug_host;
         
-        type = (type == 'auto_detect') ? 'Auto Detect' : 'Manual';
+        type = AppSettings.types.display[type].label;
         host = (host.length > 15) ? host.substring(0, 15) + '...' : host;
         
         $('.info .type div').attr('title', type).text(type);
@@ -79,7 +79,7 @@ var ZendDebug = {
             
             // Find the Zend Debug cookie
             if (typeof cookies['ZDEDebuggerPresent'] == 'undefined') {
-                return console.error('ZDE debugger not present');
+                return false;
             };
             
             $('.control').removeAttr('disabled');
@@ -108,7 +108,7 @@ var ZendDebug = {
         var appSettings = AppSettings.getValues();
         cookie = $.extend({}, ZendCookie.getValues(), cookie);
         
-        if (appSettings.studio.enabled == 'auto_detect') {
+        if (appSettings.studio.enabled == AppSettings.types.callClient) {
             this.getClient(cookie, reload, ZendDebug.executeEnd);
         } else {
             this.executeEnd(cookie, reload);

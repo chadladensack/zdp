@@ -32,7 +32,7 @@ var AppOptions = {
     submit : function() {
         var input = $(this).serializeObject();
         console.log(input);
-        chrome.storage.sync.set(input, function() {
+        chrome.storage.local.set(input, function() {
             $(AppOptions.idSaveMessage).show();
             
             window.setTimeout(function() {

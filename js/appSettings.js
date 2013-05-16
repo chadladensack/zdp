@@ -4,6 +4,22 @@
  * @param object
  */
 var AppSettings = {
+    types : {
+        callClient : 'auto_detect',
+        options : [
+            'auto_detect',
+            'manual'
+        ],
+        display : {
+            auto_detect : {
+                label : 'Auto Detect'
+            },
+            manual : {
+                label : 'Manual'
+            }
+        }
+    },
+    
     defaultValues : {
         general : {
             // @todo maybe add a search toolbar to the popup window?
@@ -29,7 +45,7 @@ var AppSettings = {
     values : {},
     
     init : function(callback) {
-        chrome.storage.sync.get(null, function(items) {
+        chrome.storage.local.get(null, function(items) {
             AppSettings.setOptions(items, callback);
         });
     },
