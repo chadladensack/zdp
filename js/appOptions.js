@@ -4,12 +4,12 @@ var AppOptions = {
     idClientType : 'select[name="studio\\[enabled\\]"]',
     
     init : function() {
-        this.loadValues(AppSettings.getValues());
+        AppOptions.loadValues(AppSettings.getValues());
         
-        $(this.idForm).on('submit', AppOptions.submit);
+        $(AppOptions.idForm).on('submit', AppOptions.submit);
         
-        $(this.idClientType).change(AppOptions.clientDetection);
-        $(this.idClientType).trigger('change');
+        $(AppOptions.idClientType).change(AppOptions.clientDetection);
+        $(AppOptions.idClientType).trigger('change');
     },
     
     loadValues : function(values) {
@@ -20,7 +20,7 @@ var AppOptions = {
             name = setting[0].replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
             value = setting[1];
             
-            $(this.idForm).find(':input[name="' + name + '"]').val(value);
+            $(AppOptions.idForm).find(':input[name="' + name + '"]').val(value);
         };
     },
     
@@ -30,17 +30,15 @@ var AppOptions = {
     },
     
     submit : function() {
-        var input = $(this).serializeArray();
-        
-        for (var i=0; i<input.length; ++i) {
-            localStorage[input[i].name] = input[i].value;
-        };
-        
-        $(AppOptions.idSaveMessage).show();
-        
-        window.setTimeout(function() {
-            $(AppOptions.idSaveMessage).fadeOut('fast');
-        }, 2500);
+        var input = $(this).serializeObject();
+        console.log(input);
+        chrome.storage.sync.set(input, function() {
+            $(AppOptions.idSaveMessage).show();
+            
+            window.setTimeout(function() {
+                $(AppOptions.idSaveMessage).fadeOut('fast');
+            }, 2500);
+        });
         
         return false;
     }
@@ -48,5 +46,5 @@ var AppOptions = {
 
 // initalize the options display
 $(function() {
-    AppOptions.init();
+    AppSettings.init(AppOptions.init);
 });

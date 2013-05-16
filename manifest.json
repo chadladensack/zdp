@@ -25,6 +25,7 @@
     "options_page": "options.html",
     
     "permissions": [
+        "storage",
         "cookies",
         "tabs",
         "http://*/"

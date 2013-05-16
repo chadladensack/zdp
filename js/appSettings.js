@@ -17,19 +17,31 @@ var AppSettings = {
         studio : {
             enabled : 'auto_detect',
             auto_detect : {
-                label : 'Auto Detect',
                 port: '20080'
             },
             manual : {
-                label : 'Manual',
                 debug_host : 'localhost',
                 debug_port : '10137'
             }
         }
     },
     
+    values : {},
+    
+    init : function(callback) {
+        chrome.storage.sync.get(null, function(items) {
+            AppSettings.setOptions(items, callback);
+        });
+    },
+    
+    setOptions : function(items, callback) {
+        AppSettings.values = $.extend({}, AppSettings.getDefault(), items);
+        
+        callback();
+    },
+    
     getValues : function() {
-        return $.extend(this.getDefault(), localStorage);
+        return AppSettings.values;
     },
     
     getDefault : function() {

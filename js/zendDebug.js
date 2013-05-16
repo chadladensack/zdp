@@ -52,10 +52,11 @@ var ZendDebug = {
     
     updateInfoEnd : function(cookie, reload) {
         var appSettings = AppSettings.getValues();
-        var type = appSettings.studio[appSettings.studio.enabled].label;
+        var type = appSettings.studio.enabled;
         var port = cookie.debug_port;
         var host = cookie.debug_host;
         
+        type = (type == 'auto_detect') ? 'Auto Detect' : 'Manual';
         host = (host.length > 15) ? host.substring(0, 15) + '...' : host;
         
         $('.info .type div').attr('title', type).text(type);
@@ -191,5 +192,6 @@ var ZendDebug = {
 
 // initalize the application. Executed every time the "toolbar" window is opened.
 $(function() {
-    ZendDebug.init();
+    // load the settings
+    AppSettings.init(ZendDebug.init);
 });
