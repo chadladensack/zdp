@@ -1,19 +1,16 @@
-zDP (Zend Debug and Profiler)
-===
+# zDP (Zend Debug and Profiler)
 
 Zend Debug and Profiler toolbar for Google Chrome.  Allows Debugging and Profiling capabilities with auto detection for the Zend Debug client.
 
-This is a fork of the [zDebug Google Chrome extension](https://chrome.google.com/webstore/detail/zdebug/gknbnafalimbhgkmichoadhmkaoingil?hl=en "zDebug Google Chrome extension") created by Dylan Holmes.  Dylan, thank you for your hard work in putting the base together.  Dylan, please contact me so we can collaborate on knocking this thing out of the park for future use!
+> This is a fork of the [zDebug Google Chrome extension](https://chrome.google.com/webstore/detail/zdebug/gknbnafalimbhgkmichoadhmkaoingil?hl=en "zDebug Google Chrome extension") created by Dylan Holmes.  Dylan, thank you for your hard work in putting the base together.  Dylan, please contact me so we can collaborate on knocking this thing out of the park for future use!
 
-How To Use
-==
+## How To Use
 * Get the source from GitHub
 * Load the extension in Chrome following the commands at http://developer.chrome.com/extensions/getstarted.html#unpacked
 * Start (if not already running) Zend Studio or IDE using Zend Debugger.
 * Start using the debugger/profiler.  Zend Debug client auto detection is enabled by default.
 
-Todo
-==
+## Todo
 * Fix issue with values not persisting correctly between options and cookie set.  It's due to the way the default cookie values and settings are loaded - on initial load.  It should be a quick fix.
 * Hide/Show auto detect or manual input fields in the options page.
 * Show client connection info on the toolbar display.  Helpful to determine what IP and port the debug session will use.
