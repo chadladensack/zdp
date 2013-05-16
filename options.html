@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>zDP (zDebugger and zProfiler)</title>
+    <title>zDP (Zend Debugger and Profiler)</title>
     
     <link href="css/chrome-bootstrap.css" rel="stylesheet">
 </head>
@@ -20,48 +20,18 @@
     <div class="mainview view">
         <div id="forms" class="selected">
             <header>
-                <h1>Settings <span class="sub_title">connection information for Zend Debugger</span></h1>
+                <h1>Settings <span class="sub_title">connection information for Zend Debugger and Profiler (zDP)</span></h1>
             </header>
             <div class="content">
                 <form id="settings">
                     <div class="checkbox" style="margin: 10px 0;">
                         <label>
-                            <div style="line-height:20px;">Zend Debug Client Detection Type</div>
-                            <select name="studio[enabled]">
-                                <option value="auto_detect">Auto Detect</option>
-                                <option value="manual">Manual</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div style="margin: 20px 0 10px 0;">
-                        <label>
-                            <div style="line-height:20px;">Auto Detect Debug Client Port</div>
-                            <input type="text" name="studio[auto_detect][port]" placeholder="Debug Client Port">
-                            <span class="sub_title" style="line-height:20px; font-size:11px;">The Zend Debugger auto discovery port specified in your local IDE.  Default is 20080.</span>
-                        </label>
-                    </div>
-                    <div style="margin: 20px 0 10px 0;">
-                        <label>
-                            <div style="line-height:20px;">Manual Debug Host</div>
-                            <input type="text" name="studio[manual][debug_host]" placeholder="Debug Host">
-                            <span class="sub_title" style="line-height:20px; font-size:11px;">Comma separated values e.g. localhost,127.0.0.1,192.168.0.12</span>
-                        </label>
-                    </div>
-                    <div style="margin: 10px 0;">
-                        <label>
-                            <div style="line-height:20px;">Manual Debug Port</div>
-                            <input type="text" name="studio[manual][debug_port]" placeholder="Debug Port">
-                            <span class="sub_title" style="line-height:20px; font-size:11px;">Integer value specifying a port e.g. 10137</span>
-                        </label>
-                    </div>
-                    <div class="checkbox" style="margin: 10px 0;">
-                        <label>
-                            <div style="line-height:20px;">Use Fast File</div>
-                            <select name="session[use_fast_files]">
+                            <div style="line-height:20px;">Break On First Line</div>
+                            <select name="session[break_on_first_line]">
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
                             </select>
-                            <span class="sub_title" style="line-height:20px; font-size:11px;">Used by newer versions of Zend Debuger. Default to "Yes"</span>
+                            <span class="sub_title" style="line-height:20px; font-size:11px;">Determines if the debug session will automatically pause execution on the first line. Default to "Yes"</span>
                         </label>
                     </div>
                     <div class="checkbox" style="margin: 10px 0;">
@@ -76,14 +46,50 @@
                     </div>
                     <div class="checkbox" style="margin: 10px 0;">
                         <label>
-                            <div style="line-height:20px;">Break On First Line</div>
-                            <select name="session[break_on_first_line]">
+                            <div style="line-height:20px;">Use Fast File</div>
+                            <select name="session[use_fast_files]">
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
                             </select>
-                            <span class="sub_title" style="line-height:20px; font-size:11px;">Determines if the debug session will automatically pause execution on the first line. Default to "Yes"</span>
+                            <span class="sub_title" style="line-height:20px; font-size:11px;">Used by newer versions of Zend Debuger. Default to "Yes"</span>
                         </label>
                     </div>
+                    
+                    <section>
+                        <h3>Zend Debug Client Detection Settings</h3>
+                        <p>The following determines how the Zend Debugger on the server wil connect to the client.  The majority of the time auto detection will work just fine.  For the one-off situations, specifying a manual connection type will allow you to make the necessary changes.</p>
+                        <div class="checkbox" style="margin: 10px 0;">
+                            <label>
+                                <div style="line-height:20px;">Detection Type</div>
+                                <select name="studio[enabled]">
+                                    <option value="auto_detect">Auto Detect</option>
+                                    <option value="manual">Manual</option>
+                                </select>
+                                <span class="sub_title" style="line-height:20px; font-size:11px;">Default to "Auto Detect"</span>
+                            </label>
+                        </div>
+                        <div class="client auto_detect" style="margin: 20px 0 10px 0;">
+                            <label>
+                                <div style="line-height:20px;">Auto Detect Debug Client Port</div>
+                                <input type="text" name="studio[auto_detect][port]" placeholder="Debug Client Port">
+                                <span class="sub_title" style="line-height:20px; font-size:11px;">The Zend Debugger auto discovery port specified in your local IDE.  Default is 20080.  Make sure your IDE is running before opening the debug toolbar.</span>
+                            </label>
+                        </div>
+                        <div class="client manual" style="margin: 20px 0 10px 0;">
+                            <label>
+                                <div style="line-height:20px;">Manual Debug Host</div>
+                                <input type="text" name="studio[manual][debug_host]" placeholder="Debug Host">
+                                <span class="sub_title" style="line-height:20px; font-size:11px;">Comma separated values with no space between values e.g. localhost,127.0.0.1,192.168.0.12</span>
+                            </label>
+                        </div>
+                        <div class="client manual" style="margin: 10px 0;">
+                            <label>
+                                <div style="line-height:20px;">Manual Debug Port</div>
+                                <input type="text" name="studio[manual][debug_port]" placeholder="Debug Port">
+                                <span class="sub_title" style="line-height:20px; font-size:11px;">Integer value specifying a port e.g. 10137</span>
+                            </label>
+                        </div>
+                    </section>
                     
                     <div style="margin: 20px 0 10px 0;">
                         <button type="submit">Save Settings</button> <span id="savemessage" style="display:none;">Saved!</span>

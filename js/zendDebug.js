@@ -2,12 +2,9 @@
  * Debugging interface and runtime information
  */
 var ZendDebug = {
-
+    
     tabId : null,
     tabUri : {},
-    
-    cookie : {},
-    reload : false,
     
     init : function() {
         // tab change events
@@ -38,6 +35,32 @@ var ZendDebug = {
             chrome.tabs.create({url: 'options.html'});
             return false;
         });
+        
+        ZendDebug.updateInfo();
+    },
+    
+    updateInfo : function() {
+        var cookie = ZendCookie.getValues();
+        var appSettings = AppSettings.getValues();
+        
+        if (appSettings.studio.enabled == 'auto_detect') {
+            this.getClient(cookie, false, ZendDebug.updateInfoEnd);
+        } else {
+            ZendDebug.updateInfoEnd(cookie, false);
+        }
+    },
+    
+    updateInfoEnd : function(cookie, reload) {
+        var appSettings = AppSettings.getValues();
+        var type = appSettings.studio[appSettings.studio.enabled].label;
+        var port = cookie.debug_port;
+        var host = cookie.debug_host;
+        
+        host = (host.length > 15) ? host.substring(0, 15) + '...' : host;
+        
+        $('.info .type div').attr('title', type).text(type);
+        $('.info .ip div').attr('title', cookie.debug_host).text(host);
+        $('.info .port div').attr('title', port).text(port);
     },
     
     updateRadios : function() {
@@ -80,22 +103,19 @@ var ZendDebug = {
         });
     },
     
-    executeBuild : function(cookieData, reload) {
-        this.reload = reload;
+    executeStart : function(cookie, reload) {
+        var appSettings = AppSettings.getValues();
+        cookie = $.extend({}, ZendCookie.getValues(), cookie);
         
-        if (typeof cookieData == 'object') {
-            this.cookie = $.extend({}, ZendCookie.getValues(), cookieData);
-            
-            if (AppSettings.studio.enabled == 'auto_detect') {
-                this.getClient();
-            }
+        if (appSettings.studio.enabled == 'auto_detect') {
+            this.getClient(cookie, reload, ZendDebug.executeEnd);
+        } else {
+            this.executeEnd(cookie, reload);
         }
-        
-        this.executeFinish(this.cookie, this.tabUri, this.reload);
     },
     
-    executeFinish : function(cookies, tabUri, reload) {
-        AppCookie.update(cookies, tabUri);
+    executeEnd : function(cookies, reload) {
+        AppCookie.update(cookies, this.tabUri);
         
         if (reload === true) {
             chrome.tabs.reload(this.tabId);
@@ -106,35 +126,35 @@ var ZendDebug = {
     },
     
     debugCurrent : function() {
-        this.executeBuild({
+        this.executeStart({
             original_url : ZendDebug.tabUri.href(),
             debug_new_session : '1'
         }, true);
     },
 
     debugNext : function() {
-        this.executeBuild({
+        this.executeStart({
             original_url : ZendDebug.tabUri.href(),
             debug_new_session : '1'
         }, false);
     },
 
     debugPost : function() {
-        this.executeBuild({
+        this.executeStart({
             original_url : ZendDebug.tabUri.href(),
             debug_start_session : 'POST'
         }, false);
     },
 
     debugStart : function() {
-        this.executeBuild({
+        this.executeStart({
             original_url : ZendDebug.tabUri.href(),
             debug_start_session : '1'
         }, false);
     },
     
     profileCurrent : function() {
-        this.executeBuild({
+        this.executeStart({
             original_url : ZendDebug.tabUri.href(),
             debug_new_session : '1',
             start_profile : '1'
@@ -142,7 +162,7 @@ var ZendDebug = {
     },
 
     profileNext : function() {
-        this.executeBuild({
+        this.executeStart({
             original_url : ZendDebug.tabUri.href(),
             debug_new_session : '1',
             start_profile : '1'
@@ -150,20 +170,19 @@ var ZendDebug = {
     },
 
     stopAll : function() {
-        this.cookie = ZendDebugDefault;
-        
-        this.executeBuild(false, false);
+        AppCookie.update(ZendCookie.getDefault(), this.tabUri);
     },
 
-    getClient : function() {
+    getClient : function(cookie, reload, callback) {
         var req = new XMLHttpRequest();
-        req.open('get', 'http://localhost:' + AppSettings.studio.auto_detect.port, true);
+        var appSettings = AppSettings.getValues();
+        
+        req.open('get', 'http://localhost:' + appSettings.studio.auto_detect.port, true);
         req.addEventListener('load', function (e) {
             var uri = new URI('?' + e.target.responseText.trim());
             var data = uri.search(true);
             
-            ZendDebug.cookie = $.extend({}, ZendDebug.cookie, data);
-            ZendDebug.executeFinish(ZendDebug.cookie, ZendDebug.tabUri, ZendDebug.reload);
+            callback($.extend({}, cookie, data), reload);
         }, false);
         
         req.send(null);

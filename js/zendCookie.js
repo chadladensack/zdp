@@ -1,6 +1,6 @@
 var ZendCookie = {
      // must all be empty - this is used to clear all related cookies
-    debugDefault : {
+    defaultValues : {
         _bm : '',
         ZendDebuggerCookie : '',
         debug_line_bp : '',
@@ -28,7 +28,7 @@ var ZendCookie = {
     
     getValues : function() {
         // apply defaults
-        var values = $.extend({}, ZendDebugDefault, {
+        var values = $.extend({}, this.getDefault(), {
             ZendDebuggerCookie : 'php',
             send_debug_header : '1',
             send_sess_end : '1',
@@ -37,15 +37,16 @@ var ZendCookie = {
         });
         
         // apply application settings
-        values.debug_host = AppSettings.studio.manual.debug_host;
-        values.debug_port = AppSettings.studio.manual.debug_port;
-        values.debug_fastfile = (AppSettings.session.use_fast_files == true) ? '1' : '0';
-        values.debug_stop = (AppSettings.session.break_on_first_line == true) ? '1' : '0';
+        var appSettings = AppSettings.getValues();
+        values.debug_host = appSettings.studio.manual.debug_host;
+        values.debug_port = appSettings.studio.manual.debug_port;
+        values.debug_fastfile = (appSettings.session.use_fast_files == true) ? '1' : '0';
+        values.debug_stop = (appSettings.session.break_on_first_line == true) ? '1' : '0';
         
         // odd switch between two vars - Zend Debugger wants it this way
-        if (AppSettings.session.debug_local_copy == true) {
+        if (appSettings.session.debug_local_copy == true) {
             values.use_remote = '1';
-        } else if (AppSettings.session.debug_local_copy == false) {
+        } else if (appSettings.session.debug_local_copy == false) {
             values.no_remote = '1';
         };
         
@@ -53,5 +54,9 @@ var ZendCookie = {
         values.debug_session_id = (Math.floor(Math.random() * 147483648) + 2000);
         
         return values;
+    },
+    
+    getDefault : function() {
+        return this.defaultValues;
     }
 };

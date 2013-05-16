@@ -5,48 +5,67 @@
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <section class="profile">
-        <h1>Profile</h1>
-        <div class="control" data-action="profileCurrent">
-            <div class="inner">
-                <span class="title">Current Page</span>
-                <div class="checkbox neutral"></div>
+    <div class="left">
+        <section class="profile">
+            <h1>Profile</h1>
+            <div class="control" data-action="profileCurrent">
+                <div class="inner">
+                    <span class="title">Current Page</span>
+                    <div class="checkbox neutral"></div>
+                </div>
+            </div>
+            <div class="control" data-action="profileNext">
+                <div class="inner">
+                    <span class="title">Next Page</span>
+                    <div id="profileNext" class="checkbox off"></div>
+                </div>
+            </div>
+        </section>
+        <div class="info">
+            <h1>Settings</h1>
+            <div class="type">
+                <label>Type</label>
+                <div>auto</div>
+            </div>
+            <div class="ip">
+                <label>IP</label>
+                <div>127.0.0.1</div>
+            </div>
+            <div class="port">
+                <label>Port</label>
+                <div>1234</div>
             </div>
         </div>
-        <div class="control" data-action="profileNext">
-            <div class="inner">
-                <span class="title">Next Page</span>
-                <div id="profileNext" class="checkbox off"></div>
+    </div>
+    <div class="left">
+        <section class="debug">
+            <h1><a id="settings" href="#">Options</a>Debug</h1>
+            <div class="control" data-action="debugCurrent">
+                <div class="inner">
+                    <span class="title">Current Page</span>
+                    <div class="checkbox neutral"></div>
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="debug">
-        <h1><a id="settings" href="#">Options</a>Debug</h1>
-        <div class="control" data-action="debugCurrent">
-            <div class="inner">
-                <span class="title">Current Page</span>
-                <div class="checkbox neutral"></div>
+            <div class="control" data-action="debugNext">
+                <div class="inner">
+                    <span class="title">Next Page</span>
+                    <div id="debugNext" class="checkbox off"></div>
+                </div>
             </div>
-        </div>
-        <div class="control" data-action="debugNext">
-            <div class="inner">
-                <span class="title">Next Page</span>
-                <div id="debugNext" class="checkbox off"></div>
+            <div class="control" data-action="debugPost">
+                <div class="inner">
+                    <span class="title">All POST</span>
+                    <div id="debugPost" class="checkbox off"></div>
+                </div>
             </div>
-        </div>
-        <div class="control" data-action="debugPost">
-            <div class="inner">
-                <span class="title">All POST</span>
-                <div id="debugPost" class="checkbox off"></div>
+            <div class="control" data-action="debugStart">
+                <div class="inner">
+                    <span class="title">All GET/POST</span>
+                    <div id="debugStart" class="checkbox off"></div>
+                </div>
             </div>
-        </div>
-        <div class="control" data-action="debugStart">
-            <div class="inner">
-                <span class="title">All GET/POST</span>
-                <div id="debugStart" class="checkbox off"></div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
     
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/uri.js"></script>

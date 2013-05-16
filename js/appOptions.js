@@ -1,11 +1,15 @@
 var AppOptions = {
-    formId : '#settings',
-    saveMessageId : '#savemessage',
+    idForm : '#settings',
+    idSaveMessage : '#savemessage',
+    idClientType : 'select[name="studio\\[enabled\\]"]',
     
     init : function() {
-        this.loadValues(AppSettings);
+        this.loadValues(AppSettings.getValues());
         
-        $(this.formId).on('submit', AppOptions.submit);
+        $(this.idForm).on('submit', AppOptions.submit);
+        
+        $(this.idClientType).change(AppOptions.clientDetection);
+        $(this.idClientType).trigger('change');
     },
     
     loadValues : function(values) {
@@ -16,8 +20,13 @@ var AppOptions = {
             name = setting[0].replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
             value = setting[1];
             
-            $(this.formId).find(':input[name="' + name + '"]').val(value);
+            $(this.idForm).find(':input[name="' + name + '"]').val(value);
         };
+    },
+    
+    clientDetection : function() {
+        $('.client').hide();
+        $('.client.' + $(this).val()).show();
     },
     
     submit : function() {
@@ -27,10 +36,10 @@ var AppOptions = {
             localStorage[input[i].name] = input[i].value;
         };
         
-        $(AppOptions.saveMessageId).show();
+        $(AppOptions.idSaveMessage).show();
         
         window.setTimeout(function() {
-            $(AppOptions.saveMessageId).fadeOut('fast');
+            $(AppOptions.idSaveMessage).fadeOut('fast');
         }, 2500);
         
         return false;
