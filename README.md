@@ -11,9 +11,9 @@ Zend Debug and Profiler toolbar for Google Chrome.  Allows Debugging and Profili
 4. Start using the debugger/profiler.  Zend Debug client auto detection is enabled by default.
 
 ## Todo
-* Fix issue with values not persisting correctly between options and cookie set.  It's due to the way the default cookie values and settings are loaded - on initial load.  It should be a quick fix.
-* Hide/Show auto detect or manual input fields in the options page.
-* Show client connection info on the toolbar display.  Helpful to determine what IP and port the debug session will use.
+* [IN PROGRESS] Fix issue with values not persisting correctly between options and cookie set.  It's a problem merging the localStorage (array) with the object that holds the default values.
+* [COMPLETED] Hide/Show auto detect or manual input fields in the options page.
+* [COMPLETED] Show client connection info on the toolbar display.  Helpful to determine what IP and port the debug session will use.
 * Add wiki page(s) to show how the Zend Debug session and data tunnel are established and used.
 * Add wiki page to provide a "quick and dirty" how-to guide.
 * (maybe) add helpful links into the toolbar display just like the Zend Debug Toolbar for Firefox and Internet Explorer.
